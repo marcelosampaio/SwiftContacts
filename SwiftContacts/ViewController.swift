@@ -7,12 +7,29 @@
 //
 
 import UIKit
+import Contacts
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let store = CNContactStore()
+        
+        let contact = CNMutableContact()
+        contact.namePrefix = "Hoff"
+        contact.nameSuffix = "Henry"
+        
+        let saveContext = CNSaveRequest()
+        saveContext.add(contact, toContainerWithIdentifier: nil)
+        
+        do {
+            try store.execute(saveContext)
+            print("😛 contact stored 👍")
+        } catch {
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
