@@ -17,8 +17,11 @@ class ViewController: UIViewController {
         let store = CNContactStore()
         
         let contact = CNMutableContact()
-        contact.namePrefix = "Hoff"
-        contact.nameSuffix = "Henry"
+        contact.givenName = "Arthur Henry"
+        contact.organizationName = "Crew Co"
+        contact.note = "Endereço fïsico do item"
+        contact.phoneNumbers = [CNLabeledValue(label:CNLabelHome, value:CNPhoneNumber(stringValue:"(555) 555-5555"))]
+        
         
         let saveContext = CNSaveRequest()
         saveContext.add(contact, toContainerWithIdentifier: nil)
@@ -26,17 +29,12 @@ class ViewController: UIViewController {
         do {
             try store.execute(saveContext)
             print("😛 contact stored 👍")
+            print("☎️ 👍")
         } catch {
-            
+            print("‼️ error: \(error)")
         }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
